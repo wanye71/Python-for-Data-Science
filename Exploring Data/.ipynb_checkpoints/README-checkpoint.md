@@ -307,11 +307,110 @@ df_totals = df.groupby('Product Name').sum().reset_index()
 # And there you have it, folks! We've conquered the data mountain and emerged victorious with our trusty DataFrame in tow.
 # Now it's time to sit back, relax, and soak in the satisfaction of a coding job well done. Until the next adventure beckons!
 df_totals
-
-
 ```
 
 ### Export data with Pandas
 ```python
+# Aight, listen up fam! We're about to jet set into the coding world like VIPs on a world tour!
 
+# First stop: we're gearing up by importing the pandas library.
+
+# pandas is like our passport to the data kingdom, guiding us through the twists and turns of data manipulation.
+import pandas as pd  
+
+# Now that we've got our gear sorted, it's time to hit the road and explore the code landscape!
+
+# Step 1: Read in the CSV file to kickstart our adventure.
+# We're using the 'pd.read_csv' function to load up our data. Think of it like opening a treasure chest full of data gems!
+# The 'pd' part is like our tour guide, leading the way with pandas magic.
+# The 'read_csv' function does exactly what it says on the tin - it reads in CSV files and turns them into DataFrame treasures.
+
+# Buckle up, folks, 'cause we're about to embark on a data safari!
+df = pd.read_csv('../MonthlyProductSales2.csv')  
+
+# And there you have it! We've set the stage, packed our bags, and we're ready to hit the open road of code exploration.
+# So grab your snacks, put on your coding shades, and let's rock and roll!
+
+
+# Extract Year from 'Month of Order Date'
+
+# This line creates a new column named 'Year' in the DataFrame 'df'
+df['Year'] = df['Month of Order Date'].str[:4]
+
+# Explanation:
+#   - We use string manipulation techniques from the `str` accessor on the 'Month of Order Date' column.
+#   - `[:4]` extracts the first four characters (assuming YYYY-MM-DD format, this captures the year).
+#   - The result is assigned to the new 'Year' column.
+
+# Group Data by Year and Product, Calculate Quantity Sum
+
+# This line performs data analysis and creates a new DataFrame named 'df_export'
+df_export = df.groupby(['Year', 'Product Name']).sum().reset_index()
+
+# Explanation:
+#   - We use `groupby` to group data in 'df' by two columns:
+#     - 'Year' (extracted in the previous step) categorizes orders by year.
+#     - 'Product Name' (likely existing) categorizes orders by product.
+#   - Grouping allows analysis of sales performance for each product in each year.
+#   - `.sum()` calculates the total quantity sold for each unique year-product combination.
+#   - `.reset_index()` converts group labels ('Year' and 'Product Name') back into regular columns 
+#     in 'df_export' for easier interpretation.
+
+# Potential Further Processing (Function Call)
+
+# This line attempts to call a function named `fix_and_calculate_yearly_sales`. 
+# However, the function definition is not provided. 
+# It's likely intended for further data processing or calculations specific to your needs.
+
+df_export = fix_and_calculate_yearly_sales(df.copy())  # Assuming the function exists
+
+# Print the Resulting DataFrame (Summary of Yearly Sales)
+
+#df_export
+
+
+df_export.to_csv(
+    # Path or buffer where to write the DataFrame (file path or file-like object)
+    "../output/YearlyProductSalesTotals.csv",
+
+    # Include column headers in the first row (default: True)
+    header=True,
+
+    # Exclude the DataFrame's index (default: True)
+    index=False,
+
+    # Encoding for the data (default: 'utf-8')
+    encoding='utf-8'
+)
+
+
+# Export to JSON - Souvenirs in a Digital Satchel!
+
+# Our data expedition has been a success! We've unearthed valuable insights stored in the "df_export" DataFrame.
+# But wouldn't it be cool to have a digital version of our souvenirs, a JSON file, to share with others?
+
+# Here's how we pack our loot into a JSON file named "YearlyProductSalesTotals.json":
+
+df_export.to_json(
+    "../output/YearlyProductSalesTotals.json",  # Path to the output JSON file
+    # How to represent each row of the DataFrame (default: 'index')
+    orient='records'
+)
+
+
+# Export to Excel - The Grand Finale of Our Expedition!
+
+# Time to showcase the grand finale of our data expedition! We're going to export our findings,
+# stored in the "df_export" DataFrame, to a shiny new Excel file named "YearlyProductSalesTotals.xlsx".
+
+# This Excel file will be like a detailed report summarizing our exploration and insights.
+
+df_export.to_excel("../output/YearlyProductSalesTotals.xlsx",
+
+    # Include column headers in the first row of the sheet (default: True)
+    header=True,
+
+    # Exclude the DataFrame's index (default: True)
+    index=False
+)
 ```
