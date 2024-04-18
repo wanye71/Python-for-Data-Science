@@ -201,9 +201,6 @@ df
 df.head(n=10)
 
 
-# show last 10 rows
-df.tail(n=10)
-
 # Alright, fam, here's the deal. We're diving deep into our data game with this slice.
 
 # This line of code uses the 'tail()' method on our DataFrame 'df' to retrieve the last 10 rows.
@@ -217,6 +214,14 @@ df.tail(n=10)
 # This function is like callin' in the data squad to give us the lowdown on our crib.
 # It spills all the tea on our data, from its size and shape to the data types rollin' in.
 df.info()
+
+
+# Yo, fam, let's get some serious deets on our DataFrame.
+
+# This line of code calls the 'describe()' method on our DataFrame 'df'.
+# It's like summoning the data guru to spill the beans on our data crib.
+# The 'describe()' method provides summary statistics for numerical columns in the DataFrame.
+df.describe()
 
 
 # Yo, check it! We're about to dive into the world of series with this slice.
