@@ -172,7 +172,63 @@ final_df_reset = final_df.reset_index(drop=True)
 
 ### Inspect DataFrames with Pandas
 ```python
+# Alright, let's bring in the pandas library and get this data party started!
 
+# This 'import pandas as pd' line imports the pandas library and aliases it as 'pd'.
+# It's like sending out invitations to our data party and welcoming pandas as our honored guest.
+import pandas as pd
+
+
+# Now, let's get to the real deal! We're loading up our CSV file 'MonthlyProductSales2.csv'
+# and dumping its juicy contents right into a DataFrame called df.
+# It's like cracking open a treasure chest packed with data gold and pouring it into our data crib.
+
+# This line of code uses the 'pd.read_csv()' function from the pandas library to read a CSV file
+# and create a DataFrame. The DataFrame is assigned to the variable 'df'. It's like unlocking
+# a treasure chest full of valuable data and pouring its contents into our data crib.
+df = pd.read_csv('../MonthlyProductSales2.csv')
+
+
+# Yo, peep this! The 'df' DataFrame holds all our dope data from the CSV file 'MonthlyProductSales2.csv'.
+# It's like takin' another look at our data crib, checkin' out the treasures we've already scooped up.
+df
+
+
+# Alright, fam, let's get a glimpse of the first few rows in our DataFrame.
+
+# This line of code uses the 'head()' method on our DataFrame 'df' to display the first 10 rows.
+# It's like peeking through the front window of our data crib to see who's chillin' inside.
+df.head(n=10)
+
+
+# show last 10 rows
+df.tail(n=10)
+
+# Alright, fam, here's the deal. We're diving deep into our data game with this slice.
+
+# This line of code uses the 'tail()' method on our DataFrame 'df' to retrieve the last 10 rows.
+# The 'tail()' method is like taking a peek at the end of our data crib, seeing what's up in the final stretch.
+# The 'n=10' argument specifies that we want to fetch the last 10 rows specifically.
+df.tail(n=10)
+
+
+# Yo, check it out! Time to hit up the 'info()' function for our DataFrame 'df'.
+
+# This function is like callin' in the data squad to give us the lowdown on our crib.
+# It spills all the tea on our data, from its size and shape to the data types rollin' in.
+df.info()
+
+
+# Yo, check it! We're about to dive into the world of series with this slice.
+
+# First up, we're selecting the 'Product Name' column from our DataFrame 'df' and assigning it to the series 's'.
+# It's like grabbing a specific stack of records from our data crib and tossing them into a new container.
+s = df['Product Name']
+
+# Next, we're using the 'value_counts()' method on the series 's' to tally up the frequency of each value.
+# This method is like running a headcount on each item in our series, so we know how many of each we've got.
+# The 'dropna=False' argument ensures that missing values are also counted.
+s.value_counts(dropna=False)
 ```
 
 ### Aggregate data with Pandas
