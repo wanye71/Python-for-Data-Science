@@ -238,6 +238,76 @@ s.value_counts(dropna=False)
 
 ### Aggregate data with Pandas
 ```python
+# Yo, we're packin' up pandas for this journey. It's our global map, showin' us all the sales territories.
+import pandas as pd  
+
+# Time to unpack our gear and dive deep into the data ocean. Let's go!
+
+
+# Now, let's unfurl the sails and navigate to the 'MonthlyProductSales2.csv' island.
+df = pd.read_csv('../MonthlyProductSales2.csv')  
+
+# Hold up, fam, let me drop some knowledge on you about the 'groupby' function!
+
+# Alright, so picture this: you've got a massive stash of data, right? And you need to make sense of it, organize it, you feel me?
+# That's where the 'groupby' function swoops in like a boss!
+
+# When you call 'groupby' on a DataFrame like 'df', you're basically telling Python, "Yo, I wanna group my data together based on some criteria, ya dig?"
+# In our case, we're saying, "Python, let's group our data by the year of the order date!"
+
+# So, Python gets to work, sifting through your data like a pro, and it starts grouping rows that have the same year in the 'Month of Order Date' column.
+# It's like gathering all your homies who ordered stuff in the same year and putting them in their own little crew.
+
+# Once Python's done its thang, you end up with these cool groups, each representing a different year. And that's just the start of the adventure, my friend!
+# You can do all sorts of cool stuff with these groups, like crunching numbers, calculating totals, or even plotting some sweet graphs.
+
+# So, yeah, that's the lowdown on the 'groupby' function. It's like the ultimate organizer, helping you make sense of your data and unlocking all kinds of possibilities!
+# If you're ready to dive deeper or have any other questions, just holler!
+
+# Now, let's get back to our code and unleash the power of 'groupby'!
+yearly_summary = df.groupby(df['Month of Order Date'].str[:4]).describe().reset_index().rename(columns={'Month of Order Date': 'Year of Order'})
+
+# And just like that, we've got our hands on the treasure map! We've reset the index, renamed the columns, and now we're ready to dive into the adventure.
+yearly_summary
+
+
+# Alright, fam, get ready to venture deeper into the wilds of code city! We're about to embark on a thrilling expedition into the realm of data crunching.
+
+# Here we go! We're summoning the power of the 'groupby' function once again, but this time, we're taking it to the next level.
+# We're telling Python, "Yo, Python, I wanna group my data by both the year of order date AND the product name!" Now that's what I call multitasking!
+
+# So, Python gets to work, slicing and dicing our data like a seasoned chef. It's like organizing a massive party with different guest lists for each year and product.
+# We're getting those sums, adding up the sales for each unique combination of year and product. It's like counting all the gold coins in each treasure chest!
+
+# And just like that, we've got our hands on the loot! We've crunched the numbers, tallied up the sales, and now we're presenting our findings to the world.
+# This DataFrame, my friend, is the culmination of our epic journey through the data wilderness.
+
+# So, without further ado, feast your eyes upon the glory of the 'df_export' DataFrame, packed to the brim with valuable insights!
+df_export = df.groupby([df['Month of Order Date'].str[:4].rename('Year of Order'), 'Product Name']).sum().reset_index()
+
+# And there you have it, folks! We've conquered the data jungle and emerged victorious with our trusty DataFrame in tow.
+# Now it's time to kick back, relax, and bask in the glory of our coding conquest. Until the next adventure awaits!
+df_export
+
+
+# Yo, yo, yo! Time to dive into the next leg of our coding odyssey: the overall product sales totals!
+
+# Check it, we're summoning the power of the 'groupby' function once again, but this time, we're keeping it simple yet mighty.
+# We're telling Python, "Listen up, Python, I wanna group my data by product name and get the sum of sales for each product." Easy peasy, right?
+
+# So, Python gets to work, rounding up all the sales figures for each product. It's like counting all the dollar bills in your pocket after a successful hustle.
+# We're talking about adding up every single sale for every single product, like tallying up the loot after a day of wheeling and dealing.
+
+# And just like that, we've got our hands on the treasure trove! We've crunched the numbers, totaled up the sales, and now we're presenting our findings to the world.
+# This DataFrame right here, my friend, is the holy grail of product sales totals. It's like hitting the jackpot in the code casino!
+
+# So, without further ado, feast your eyes upon the glory of the 'df_totals' DataFrame, packed to the brim with valuable insights!
+df_totals = df.groupby('Product Name').sum().reset_index()
+
+# And there you have it, folks! We've conquered the data mountain and emerged victorious with our trusty DataFrame in tow.
+# Now it's time to sit back, relax, and soak in the satisfaction of a coding job well done. Until the next adventure beckons!
+df_totals
+
 
 ```
 
